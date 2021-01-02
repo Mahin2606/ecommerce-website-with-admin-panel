@@ -38,15 +38,21 @@
 							</div>
 
 							<div class="form-group">
-								<label>Primary Category (Please select one if this is a sub-category)</label>
+								<label>Parent Category (Please select one if this is a sub-category)</label>
 								<select class="form-control" name="is_parent">
 									<option value="0">Please Select the Primary Category</option>
 									@foreach (App\Models\Backend\Category::orderBy('name', 'asc')->where('is_parent', 0)->get() as $parentCat)
+
 										<option value="{{ $parentCat->id }}">{{ $parentCat->name }}</option>
+
 										@foreach (App\Models\Backend\Category::orderBy('name', 'asc')->where('is_parent', $parentCat->id)->get() as $childCat)
+
 											<option value="{{ $childCat->id }}"> - {{ $childCat->name }}</option>
+
 											@foreach (App\Models\Backend\Category::orderBy('name', 'asc')->where('is_parent', $childCat->id)->get() as $childCatTwo)
+
 												<option value="{{ $childCatTwo->id }}">&nbsp; - {{ $childCatTwo->name }}</option>
+												
 											@endforeach
 										@endforeach
 									@endforeach

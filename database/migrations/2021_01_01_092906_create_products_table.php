@@ -14,7 +14,22 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('title')->unique();
+            $table->string('slug');
+            $table->text('short_desc')->nullable();
+            $table->text('description')->nullable();
+            $table->string('tags')->nullable();
+            $table->unsignedInteger('quantity')->default(0);
+            $table->integer('regular_price')->default(0);
+            $table->integer('offer_price')->nullable();
+            $table->string('sku_code')->nullable();
+            $table->integer('product_type')->default(0)->comment('0 -> New, 1 -> Old');
+            $table->integer('category_id');
+            $table->integer('brand_id');
+            $table->integer('featured_item')->default(0)->comment('0 -> Normal, Any other -> Featured');
+            $table->integer('status')->default(0)->comment('0 -> Inactive, 1 -> Active');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
