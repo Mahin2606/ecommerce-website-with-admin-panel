@@ -29,7 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.product.create');
     }
 
     /**
@@ -40,7 +40,42 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max: 255',
+        ],
+        [
+            'title.required' => 'Please insert the product name',
+        ]);
+
+        $product = new Product();
+        $product->title = $request->title;
+        $product->slug = Str::slug($request->title);
+        $product->short_desc = $request->short_desc;
+        $product->description = $request->description;
+        $product->brand_id = $request->brand_id;
+        $product->category_id = $request->category_id;
+        $product->product_type = $request->product_type;
+        $product->regular_price = $request->regular_price;
+        $product->offer_price = $request->offer_price;
+        $product->quantity = $request->quantity;
+        $product->sku_code = $request->sku_code;
+        $product->featured_item = $request->featured_item;
+        $product->status = $request->status;
+        $product->tags = trim($request->tags);
+
+        if ($request->image) {
+            $image = $request->file('image');
+            $img = rand() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('Backend/img/product/' . $img);
+
+            Image::make($image)->save($location);
+
+            $product->image = $img;
+        }
+
+        $product->save();
+
+        return redirect()->route('product.manage');
     }
 
     /**
@@ -62,7 +97,14 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+
+        if (!is_null($product)) {
+            return view('backend.pages.product.edit', compact('product'));
+        }
+        else {
+            return redirect()->route('product.manage');
+        }
     }
 
     /**
@@ -74,7 +116,47 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|max: 255',
+        ],
+        [
+            'title.required' => 'Please insert the product name',
+        ]);
+
+        $product = Product::find($id);
+        $product->title = $request->title;
+        $product->slug = Str::slug($request->title);
+        $product->short_desc = $request->short_desc;
+        $product->description = $request->description;
+        $product->brand_id = $request->brand_id;
+        $product->category_id = $request->category_id;
+        $product->product_type = $request->product_type;
+        $product->regular_price = $request->regular_price;
+        $product->offer_price = $request->offer_price;
+        $product->quantity = $request->quantity;
+        $product->sku_code = $request->sku_code;
+        $product->featured_item = $request->featured_item;
+        $product->status = $request->status;
+        $product->tags = trim($request->tags);
+
+        if (!is_null($request->image)) {
+            // Delete existing image if any
+            if (File::exists('Backend/img/product/' . $product->image)) {
+                File::delete('Backend/img/product/' . $product->image);
+            }
+
+            $image = $request->file('image');
+            $img = rand() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('Backend/img/product/' . $img);
+
+            Image::make($image)->save($location);
+
+            $product->image = $img;
+        }
+
+        $product->save();
+
+        return redirect()->route('product.manage');
     }
 
     /**
@@ -85,6 +167,20 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+
+        if (!is_null($product)) {
+            // Delete existing image if any
+            if (File::exists('Backend/img/product/' . $product->image)) {
+                File::delete('Backend/img/product/' . $product->image);
+            }
+
+            $product->delete();
+
+            return redirect()->route('product.manage');
+        }
+        else {
+            return redirect()->route('product.manage');
+        }
     }
 }
