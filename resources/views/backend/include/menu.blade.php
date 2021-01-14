@@ -14,41 +14,65 @@
 
     <!-- Brand Menu Item -->
     <li class="br-menu-item">
-      <a href="#" class="br-menu-link with-sub">
+      <a href="#" class="br-menu-link with-sub @if (Route::currentRouteNamed('brand.manage') || Route::currentRouteNamed('brand.create') || Route::currentRouteNamed('brand.edit')) active @endif">
         <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
         <span class="menu-item-label">Brands</span>
       </a><!-- br-menu-link -->
       <ul class="br-menu-sub">
-        <li class="sub-item"><a href="{{ route('brand.create') }}" class="sub-link">Add New Brand</a></li>
-        <li class="sub-item"><a href="{{ route('brand.manage') }}" class="sub-link">Manage All Brands</a></li>
+        <li class="sub-item"><a href="{{ route('brand.create') }}" class="sub-link @if (Route::currentRouteNamed('brand.create')) active @endif">Add New Brand</a></li>
+        <li class="sub-item"><a href="{{ route('brand.manage') }}" class="sub-link @if (Route::currentRouteNamed('brand.manage')) active @endif">Manage All Brands</a></li>
       </ul>
     </li>
 
     <!-- Category Menu Item -->
     <li class="br-menu-item">
-      <a href="#" class="br-menu-link with-sub">
+      <a href="#" class="br-menu-link with-sub @if (Route::currentRouteNamed('category.manage') || Route::currentRouteNamed('category.create') || Route::currentRouteNamed('category.edit')) active @endif">
         <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
         <span class="menu-item-label">Categories</span>
       </a><!-- br-menu-link -->
       <ul class="br-menu-sub">
-        <li class="sub-item"><a href="{{ route('category.create') }}" class="sub-link">Add New Category</a></li>
-        <li class="sub-item"><a href="{{ route('category.manage') }}" class="sub-link">Manage All Categories</a></li>
+        <li class="sub-item"><a href="{{ route('category.create') }}" class="sub-link @if (Route::currentRouteNamed('category.create')) active @endif">Add New Category</a></li>
+        <li class="sub-item"><a href="{{ route('category.manage') }}" class="sub-link @if (Route::currentRouteNamed('category.manage')) active @endif">Manage All Categories</a></li>
       </ul>
     </li>
-
-    <br>
 
     <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">E-Shop Management</label>
 
     <!-- Product Menu Item -->
     <li class="br-menu-item">
-      <a href="#" class="br-menu-link with-sub">
+      <a href="#" class="br-menu-link with-sub @if (Route::currentRouteNamed('product.manage') || Route::currentRouteNamed('product.create') || Route::currentRouteNamed('product.edit')) active @endif">
         <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
         <span class="menu-item-label">Products</span>
       </a><!-- br-menu-link -->
       <ul class="br-menu-sub">
-        <li class="sub-item"><a href="{{ route('product.create') }}" class="sub-link">Add New Product</a></li>
-        <li class="sub-item"><a href="{{ route('product.manage') }}" class="sub-link">Manage All Products</a></li>
+        <li class="sub-item"><a href="{{ route('product.create') }}" class="sub-link @if (Route::currentRouteNamed('product.create')) active @endif">Add New Product</a></li>
+        <li class="sub-item"><a href="{{ route('product.manage') }}" class="sub-link @if (Route::currentRouteNamed('product.manage')) active @endif">Manage All Products</a></li>
+      </ul>
+    </li>
+
+    <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Location / Area Management</label>
+
+    <!-- Division Menu Item -->
+    <li class="br-menu-item">
+      <a href="#" class="br-menu-link with-sub @if (Route::currentRouteNamed('division.manage') || Route::currentRouteNamed('division.create') || Route::currentRouteNamed('division.edit')) active @endif">
+        <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+        <span class="menu-item-label">Divisions</span>
+      </a><!-- br-menu-link -->
+      <ul class="br-menu-sub">
+        <li class="sub-item"><a href="{{ route('division.create') }}" class="sub-link @if (Route::currentRouteNamed('division.create')) active @endif">Add New Division</a></li>
+        <li class="sub-item"><a href="{{ route('division.manage') }}" class="sub-link @if (Route::currentRouteNamed('division.manage')) active @endif">Manage All Divisions</a></li>
+      </ul>
+    </li>
+
+    <!-- District Menu Item -->
+    <li class="br-menu-item">
+      <a href="#" class="br-menu-link with-sub @if (Route::currentRouteNamed('district.manage') || Route::currentRouteNamed('district.create') || Route::currentRouteNamed('district.edit')) active @endif">
+        <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+        <span class="menu-item-label">Districts</span>
+      </a><!-- br-menu-link -->
+      <ul class="br-menu-sub">
+        <li class="sub-item"><a href="{{ route('district.create') }}" class="sub-link @if (Route::currentRouteNamed('district.create')) active @endif">Add New District</a></li>
+        <li class="sub-item"><a href="{{ route('district.manage') }}" class="sub-link @if (Route::currentRouteNamed('district.manage')) active @endif">Manage All Districts</a></li>
       </ul>
     </li>
 
