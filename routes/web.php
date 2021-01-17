@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Frontend Web Routes
+| Frontend Website Routes Are Here
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -16,13 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\Frontend\PagesController@index')->name('homepage');
 Route::get('/products', 'App\Http\Controllers\Frontend\PagesController@products')->name('allProducts');
 Route::get('/products/details', 'App\Http\Controllers\Frontend\PagesController@details')->name('details');
-Route::get('/login', 'App\Http\Controllers\Frontend\PagesController@login')->name('login');
-Route::get('/registration', 'App\Http\Controllers\Frontend\PagesController@registration')->name('registration');
-
 
 /*
 |--------------------------------------------------------------------------
-| Backend Admin Web Routes
+| Backend Admin Routes Are Here
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -30,12 +27,24 @@ Route::get('/registration', 'App\Http\Controllers\Frontend\PagesController@regis
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+require __DIR__.'/auth.php';
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
+
 Route::group(['prefix' => 'admin'], function(){
-	Route::get('/dashboard', 'App\Http\Controllers\Backend\PagesController@index')->name('dashboard');
+	Route::get('/dashboard', 'App\Http\Controllers\Backend\PagesController@index')->middleware(['auth'])->name('dashboard');
 
 	// Brand Route For CRUD
-	Route::group(['prefix' => 'brand'], function(){
+	Route::group(['prefix' => 'brand'], function (){
 		Route::get('/manage', 'App\Http\Controllers\Backend\BrandController@index')->name('brand.manage');
+
 		Route::get('/create', 'App\Http\Controllers\Backend\BrandController@create')->name('brand.create');
 		Route::post('/store', 'App\Http\Controllers\Backend\BrandController@store')->name('brand.store');
 		Route::get('/edit/{id}', 'App\Http\Controllers\Backend\BrandController@edit')->name('brand.edit');
@@ -44,8 +53,9 @@ Route::group(['prefix' => 'admin'], function(){
 	});
 
 	// Category Route For CRUD
-	Route::group(['prefix' => 'category'], function(){
+	Route::group(['prefix' => 'category'], function (){
 		Route::get('/manage', 'App\Http\Controllers\Backend\CategoryController@index')->name('category.manage');
+		
 		Route::get('/create', 'App\Http\Controllers\Backend\CategoryController@create')->name('category.create');
 		Route::post('/store', 'App\Http\Controllers\Backend\CategoryController@store')->name('category.store');
 		Route::get('/edit/{id}', 'App\Http\Controllers\Backend\CategoryController@edit')->name('category.edit');
@@ -54,8 +64,9 @@ Route::group(['prefix' => 'admin'], function(){
 	});
 
 	// Product Route For CRUD
-	Route::group(['prefix' => 'product'], function(){
+	Route::group(['prefix' => 'product'], function (){
 		Route::get('/manage', 'App\Http\Controllers\Backend\ProductController@index')->name('product.manage');
+		
 		Route::get('/create', 'App\Http\Controllers\Backend\ProductController@create')->name('product.create');
 		Route::post('/store', 'App\Http\Controllers\Backend\ProductController@store')->name('product.store');
 		Route::get('/edit/{id}', 'App\Http\Controllers\Backend\ProductController@edit')->name('product.edit');
@@ -63,9 +74,10 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::post('/delete/{id}', 'App\Http\Controllers\Backend\ProductController@destroy')->name('product.destroy');
 	});
 
-	// Division Route For CRUD
-	Route::group(['prefix' => 'division'], function(){
+	// Division
+	Route::group(['prefix' => 'division'], function (){
 		Route::get('/manage', 'App\Http\Controllers\Backend\DivisionController@index')->name('division.manage');
+
 		Route::get('/create', 'App\Http\Controllers\Backend\DivisionController@create')->name('division.create');
 		Route::post('/store', 'App\Http\Controllers\Backend\DivisionController@store')->name('division.store');
 		Route::get('/edit/{id}', 'App\Http\Controllers\Backend\DivisionController@edit')->name('division.edit');
@@ -73,13 +85,24 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::post('/delete/{id}', 'App\Http\Controllers\Backend\DivisionController@destroy')->name('division.destroy');
 	});
 
-	// District Route For CRUD
-	Route::group(['prefix' => 'district'], function(){
+
+	// District
+	Route::group(['prefix' => 'district'], function (){
 		Route::get('/manage', 'App\Http\Controllers\Backend\DistrictController@index')->name('district.manage');
 		Route::get('/create', 'App\Http\Controllers\Backend\DistrictController@create')->name('district.create');
 		Route::post('/store', 'App\Http\Controllers\Backend\DistrictController@store')->name('district.store');
 		Route::get('/edit/{id}', 'App\Http\Controllers\Backend\DistrictController@edit')->name('district.edit');
 		Route::post('/edit/{id}', 'App\Http\Controllers\Backend\DistrictController@update')->name('district.update');
 		Route::post('/delete/{id}', 'App\Http\Controllers\Backend\DistrictController@destroy')->name('district.destroy');
+	});
+
+	// Slider
+	Route::group(['prefix' => 'slider'], function (){
+		Route::get('/manage', 'App\Http\Controllers\Backend\SliderController@index')->name('slider.manage');
+		Route::get('/create', 'App\Http\Controllers\Backend\SliderController@create')->name('slider.create');
+		Route::post('/store', 'App\Http\Controllers\Backend\SliderController@store')->name('slider.store');
+		Route::get('/edit/{id}', 'App\Http\Controllers\Backend\SliderController@edit')->name('slider.edit');
+		Route::post('/edit/{id}', 'App\Http\Controllers\Backend\SliderController@update')->name('slider.update');
+		Route::post('/delete/{id}', 'App\Http\Controllers\Backend\SliderController@destroy')->name('slider.destroy');
 	});
 });
