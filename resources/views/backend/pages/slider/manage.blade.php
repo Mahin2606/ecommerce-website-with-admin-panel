@@ -31,7 +31,7 @@
 							      <th scope="col">Image</th>
 							      <th scope="col">Slider Title</th>
 							      <th scope="col">Sub-title</th>
-							      <th scope="col">Description</th>
+							      <th scope="col" width="30%">Description</th>
 							      <th scope="col">Button Text</th>
 							      <th scope="col">Button URL</th>
 							      <th scope="col">Action</th>
@@ -53,7 +53,7 @@
 								      </td>
 								      <td>{{ $slider->title }}</td>
 								      <td>{{ $slider->subtitle }}</td>
-								      <td>{{ substr($slider->description, 0, 70) . '...' }}</td>
+								      <td>{{ $slider->description }}</td>
 								      <td>{{ $slider->button_text }}</td>
 								      <td>{{ $slider->button_url }}</td>
 								      <td>

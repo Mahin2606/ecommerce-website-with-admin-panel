@@ -62,7 +62,7 @@
 							<div class="form-group">
 								<label>Status</label>
 								<select class="form-control" name="status" required>
-									<option value="">Please Select the Brand Status</option>
+									<option value="">Please Select the Category Status</option>
 									<option value="0">Inactive</option>
 									<option value="1">Active</option>
 								</select>

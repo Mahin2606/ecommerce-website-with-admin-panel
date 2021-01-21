@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('title', 'asc')->get();
+        $products = Product::orderBy('title', 'desc')->get();
         return view('backend.pages.product.manage', compact('products'));
     }
 

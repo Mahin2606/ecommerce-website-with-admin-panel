@@ -27,16 +27,16 @@
 							<table class="table table-striped table-hover">
 							  <thead class="table-info">
 							    <tr>
-							      <th scope="col">#SL</th>
+							      <th scope="col" width="1%">#SL</th>
 							      <th scope="col">Image</th>
 							      <th scope="col">Title</th>
-							      <th scope="col">Short Details</th>
+							      <th scope="col" width="23%">Short Details</th>
 							      <th scope="col">Brand</th>
-							      <th scope="col">Category</th>
+							      <th scope="col" width="8%">Category</th>
 							      <th scope="col">Quantity</th>
 							      <th scope="col">Regular Price</th>
 							      <th scope="col">Offer Price</th>
-							      <th scope="col">Is Featured?</th>
+							      <th scope="col" width="5%">Is Featured?</th>
 							      <th scope="col">Status</th>
 							      <th scope="col">Action</th>
 							    </tr>

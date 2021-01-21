@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backend\Brand;
+use App\Models\Backend\Category;
+use App\Models\Backend\Product;
 use App\Models\Backend\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -19,15 +22,39 @@ class PagesController extends Controller
     public function index()
     {
         $sliders = Slider::orderBy('id', 'desc')->get();
-        return view('frontend.pages.home', compact('sliders'));
+        $products = Product::orderBy('id', 'desc')->get();
+        $featuredProducts = Product::where('featured_item', 1)->orderBy('id', 'desc')->get();
+        return view('frontend.pages.home', compact('sliders', 'products', 'featuredProducts'));
     }
 
-    public function products()
+    // Display All Products
+    public function allProducts()
+    {
+        $products = Product::orderBy('id', 'desc')->paginate(15);
+        return view('frontend.pages.products.allProducts', compact('products'));
+    }
+
+    // Display Single Product
+    public function productDetails($slug)
+    {
+        $value = Product::where('slug', $slug)->first();
+
+        if (!is_null($value)) {
+            return view('frontend.pages.products.details', compact('value')); 
+        }
+        else {
+            return back();
+        }
+    }
+
+    // Display Category Wise Products
+    public function productCategory()
     {
         return view('frontend.pages.products.allProducts');
     }
 
-    public function details()
+    // Display Single Product of a Category
+    public function showCategory($slug)
     {
         return view('frontend.pages.products.details');
     }

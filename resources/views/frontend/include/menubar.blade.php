@@ -2,19 +2,19 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder"> 
-          <!-- ============================================================= LOGO ============================================================= -->
+          <!-- ===== LOGO ===== -->
           <div class="logo"> 
             <a href="{{ route('homepage') }}"> 
-              <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="logo"> 
+              <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="logo">
             </a> 
           </div>
           <!-- /.logo --> 
-          <!-- ============================================================= LOGO : END ============================================================= --> </div>
+          <!-- ===== LOGO : END ===== --> </div>
         <!-- /.logo-holder -->
         
         <div class="col-xs-12 col-sm-12 col-md-7 top-search-holder">
           <!-- /.contact-row --> 
-          <!-- ============================================================= SEARCH AREA ============================================================= -->
+          <!-- ===== SEARCH AREA ===== -->
           <div class="search-area">
             <form>
               <div class="control-group">
